@@ -1,19 +1,16 @@
-# Template Shiny operator for Tercen
+# Volcano plot Shiny operator for Tercen
 
 ##### Description
 
-The `Template Shiny operator` is a template repository for the creation of Shiny operators in Tercen.
+Launches a Shiny application for a customizable volcano plot.
 
 ##### Usage
 
 Input projection|.
 ---|---
-`x-axis`        | type, description 
-`y-axis`        | type, description 
-`row`           | type, description 
-`column`        | type, description 
-`colors`        | type, description 
-`labels`        | type, description 
+`x-axis`        | log2 fold change (numeric)
+`y-axis`        | negative log10 of the p-values adjusted for multiple testing (numeric)
+`labels`        | the gene names to be displayed on the plot (character)
 
 Output relations|.
 ---|---
@@ -21,7 +18,10 @@ Output relations|.
 
 ##### Details
 
-Details on the computation.
+Volcano plots show the significance (typically negative log10 of the p-values adjusted 
+for multiple testing, y-axis) against the change in gene expression 
+(log2 fold change, x-axis). Additionally, the genes can be labeled using a 
+gene name variable mapped onto 'labels'. 
 
 ##### See Also
 
