@@ -311,11 +311,6 @@ ui <- dashboardPage(dark = FALSE,
       compact = TRUE,
       # menuItem(tabName = 'xy', text = "Fold change and significance", icon = icon("chart-bar")),
       menuItem(
-        tabName = 'about',
-        text = "About",
-        icon = icon("user")
-      ),
-      menuItem(
         tabName = "hits",
         text = "Selection & Annotation",
         icon = icon("dna")
@@ -334,6 +329,11 @@ ui <- dashboardPage(dark = FALSE,
         tabName = "label",
         text = "Labels",
         icon = icon("tags")
+      ),
+      menuItem(
+        tabName = 'about',
+        text = "About",
+        icon = icon("user")
       )
     )
   ),
