@@ -12,7 +12,7 @@ library(waiter)
 #### This part should not be included in ui.R and server.R scripts
 getCtx <- function(session) {
   
-  ctx <- tercenCtx(stepId = "53c200e1-e9d9-443e-a1f1-6999201d7f84",
+  ctx <- tercenCtx(stepId = "8d101387-761d-44bf-b073-01a5e5e3ae48",
                    workflowId = "ff32bd02beeae37a06f8d6fce60499b6")
   
   return(ctx)
