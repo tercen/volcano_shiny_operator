@@ -39,6 +39,10 @@ server <- function(input, output, session) {
   
   getValues <- function(session){
     ctx <- getCtx(session)
+    
+    validate(need(
+      length(ctx$labels) == 1, message = "The label variable might not have been set correctly. Please check the Tercen crosstab."
+    ))
     labs <- ctx$labels[[1]]
     values <- list()
     vars <- c(".x", ".y", labs)
