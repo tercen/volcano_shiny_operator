@@ -43,6 +43,7 @@ server <- function(input, output, session) {
     values <- list()
     vars <- c(".x", ".y", labs)
     values$data <- ctx$select(vars)
+    names(values$data) <- c(".x", ".y", ".labels")
     return(values)
   }
   
@@ -137,14 +138,13 @@ server <- function(input, output, session) {
   
   ################ SELECT COLUMNS AND ANNOTATE CHANGES #########
   df_filtered <- reactive({
-    
     df <- getData()
     
     koos <-
       df %>% select(
         `Fold change (log2)` = .x,
         `Significance` = .y,
-        Name = gene_name
+        Name = .labels
       )
     #Remove  names after semicolon for hits with multiple names, seperated by semicolons, e.g.: POLR2J3;POLR2J;POLR2J2
     koos <- koos %>% mutate(Name = gsub(';.*', '', Name))
