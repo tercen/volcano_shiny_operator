@@ -507,13 +507,6 @@
       "Repository": "TERCEN",
       "Hash": "6b8359f6781e2a0d9d0feb184930e72e"
     },
-    "thematic": {
-      "Package": "thematic",
-      "Version": "0.1.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "0cf52ca91daa26d74324e3947bdeed65"
-    },
     "tibble": {
       "Package": "tibble",
       "Version": "2.1.3",
