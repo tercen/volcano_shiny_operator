@@ -4,7 +4,6 @@ library(ggplot2)
 library(magrittr)
 library(dplyr)
 library(ggrepel)
-library(thematic)
 library(tercen)
 library(waiter)
 
@@ -41,10 +40,6 @@ getCtx <- function(session) {
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-# Makes sure the plot theme changes 
-# with the dashboad skin (dark, light)
-thematic::thematic_shiny(font = "Source Sans Pro")
 
 # in 1
 #####
