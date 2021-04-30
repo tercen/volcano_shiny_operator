@@ -22,19 +22,6 @@ getCtx <- function(session) {
 ####
 ############################################
 
-############################################
-#### This part should not be included in ui.R and server.R scripts
-getCtx <- function(session) {
-  
-  ctx <- tercenCtx(stepId = "4a583ab5-fa8e-45ff-9e22-2a694bc1da52",
-                   workflowId = "e14bacaf1cfaee3e07770ad3f40660b1")
-  
-  return(ctx)
-}
-####
-############################################
-
-
 server <- function(input, output, session) {
   
   ## For plot theme to switch with dashboard theme
