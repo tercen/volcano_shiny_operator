@@ -1,6 +1,5 @@
 library(shiny)
 library(bs4Dash)
-library(thematic)
 library(waiter)
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -98,6 +97,8 @@ in_3 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    
+    uiOutput(outputId = "select_group"),
     
     sliderInput(
       inputId = "fc_cutoff",
@@ -291,7 +292,7 @@ in_6 <- conditionalPanel(
 # Main UI
 #####
 
-ui <- dashboardPage(dark = FALSE,
+ui <- dashboardPage(dark = NULL,
   title = "Tercen|Volcano plot",
   preloader = list(html = spin_1(), color = "#333e48"),
   header = dashboardHeader(
