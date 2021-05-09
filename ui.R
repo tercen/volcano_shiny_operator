@@ -32,6 +32,7 @@ library(waiter)
 in_1 <- conditionalPanel(
   condition = "input.side == 'xy'",
   bs4Dash::box(
+    elevation = 2,
     selectInput(
       inputId = "x_var",
       label = "X-axis; Effect (fold change)",
@@ -64,7 +65,7 @@ in_2 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
-    
+    elevation = 2,
     sliderInput(
       inputId = "pointSize",
       label = "Point size",
@@ -97,6 +98,7 @@ in_3 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    elevation = 2,
     
     uiOutput(outputId = "select_group"),
     
@@ -117,6 +119,7 @@ in_3 <- conditionalPanel(
       step = 0.1,
       value = 2
     ),
+    
     selectInput(
       inputId = "direction",
       label = "Use thresholds to annotate:",
@@ -190,6 +193,7 @@ in_4 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    elevation = 2,
     checkboxInput(
       inputId = "rotate_plot",
       label = "Rotate plot 90 degrees",
@@ -235,6 +239,7 @@ in_5 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    elevation = 2,
     checkboxInput(
       inputId = "add_title",
       label = "Add title",
@@ -283,7 +288,7 @@ in_6 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
-    
+    elevation = 2,
     includeHTML("about.html")
   )
 )
@@ -307,6 +312,7 @@ ui <- dashboardPage(dark = NULL,
   sidebar = dashboardSidebar(skin = "light",
     width = "15%",
     status = "primary",
+    elevation = 2,
     sidebarMenu(
       id = "side",
       compact = TRUE,
@@ -345,6 +351,7 @@ ui <- dashboardPage(dark = NULL,
     shinyjs::useShinyjs(),
     tags$script(HTML('setInterval(function(){ $("#hiddenButton").click(); }, 1000*4);')),
     tags$footer(shinyjs::hidden(actionButton(inputId = "hiddenButton", label="hidden"))),
+    tags$style(HTML(".content-wrapper {background: #ffffff;}")),
     
     fluidRow(
       column(width = 4,
