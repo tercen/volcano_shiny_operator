@@ -28,7 +28,7 @@ server <- function(input, output, session) {
   # useAutoColor()
   
   ## For loading spinner in plot when plot is rendered
-  w <- Waiter$new(id = "coolplot")
+  w <- Waiter$new(id = "coolplot", color = transparent(alpha = .2))
   
   
   # Session variable - initialize defaults
