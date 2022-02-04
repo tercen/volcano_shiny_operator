@@ -1,6 +1,5 @@
 library(shiny)
 library(bs4Dash)
-library(thematic)
 library(waiter)
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -33,6 +32,7 @@ library(waiter)
 in_1 <- conditionalPanel(
   condition = "input.side == 'xy'",
   bs4Dash::box(
+    elevation = 2,
     selectInput(
       inputId = "x_var",
       label = "X-axis; Effect (fold change)",
@@ -65,7 +65,7 @@ in_2 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
-    
+    elevation = 2,
     sliderInput(
       inputId = "pointSize",
       label = "Point size",
@@ -98,6 +98,9 @@ in_3 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    elevation = 2,
+    
+    uiOutput(outputId = "select_group"),
     
     sliderInput(
       inputId = "fc_cutoff",
@@ -116,6 +119,7 @@ in_3 <- conditionalPanel(
       step = 0.1,
       value = 2
     ),
+    
     selectInput(
       inputId = "direction",
       label = "Use thresholds to annotate:",
@@ -189,6 +193,7 @@ in_4 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    elevation = 2,
     checkboxInput(
       inputId = "rotate_plot",
       label = "Rotate plot 90 degrees",
@@ -234,6 +239,7 @@ in_5 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
+    elevation = 2,
     checkboxInput(
       inputId = "add_title",
       label = "Add title",
@@ -282,7 +288,7 @@ in_6 <- conditionalPanel(
     status = "primary",
     collapsible = FALSE,
     solidHeader = TRUE,
-    
+    elevation = 2,
     includeHTML("about.html")
   )
 )
@@ -291,7 +297,7 @@ in_6 <- conditionalPanel(
 # Main UI
 #####
 
-ui <- dashboardPage(dark = FALSE,
+ui <- dashboardPage(dark = NULL,
   title = "Tercen|Volcano plot",
   preloader = list(html = spin_1(), color = "#333e48"),
   header = dashboardHeader(
@@ -306,15 +312,11 @@ ui <- dashboardPage(dark = FALSE,
   sidebar = dashboardSidebar(skin = "light",
     width = "15%",
     status = "primary",
+    elevation = 2,
     sidebarMenu(
       id = "side",
       compact = TRUE,
       # menuItem(tabName = 'xy', text = "Fold change and significance", icon = icon("chart-bar")),
-      menuItem(
-        tabName = 'about',
-        text = "About",
-        icon = icon("user")
-      ),
       menuItem(
         tabName = "hits",
         text = "Selection & Annotation",
@@ -334,6 +336,11 @@ ui <- dashboardPage(dark = FALSE,
         tabName = "label",
         text = "Labels",
         icon = icon("tags")
+      ),
+      menuItem(
+        tabName = 'about',
+        text = "About",
+        icon = icon("user")
       )
     )
   ),
@@ -344,6 +351,7 @@ ui <- dashboardPage(dark = FALSE,
     shinyjs::useShinyjs(),
     tags$script(HTML('setInterval(function(){ $("#hiddenButton").click(); }, 1000*4);')),
     tags$footer(shinyjs::hidden(actionButton(inputId = "hiddenButton", label="hidden"))),
+    tags$style(HTML(".content-wrapper {background: #ffffff;}")),
     
     fluidRow(
       column(width = 4,

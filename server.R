@@ -4,7 +4,6 @@ library(ggplot2)
 library(magrittr)
 library(dplyr)
 library(ggrepel)
-library(thematic)
 library(tercen)
 library(waiter)
 
@@ -29,7 +28,7 @@ server <- function(input, output, session) {
   # useAutoColor()
   
   ## For loading spinner in plot when plot is rendered
-  w <- Waiter$new(id = "coolplot")
+  w <- Waiter$new(id = "coolplot", color = transparent(alpha = .2))
   
   
   # Session variable - initialize defaults
@@ -39,11 +38,23 @@ server <- function(input, output, session) {
   
   getValues <- function(session){
     ctx <- getCtx(session)
+    
+    validate(need(
+      length(ctx$labels) == 1, message = "The label variable might not have been set correctly. Please check the Tercen crosstab."
+    ))
+    
     labs <- ctx$labels[[1]]
     values <- list()
-    vars <- c(".x", ".y", labs)
+    vars <- c(".x", ".y", ".ci", labs)
     values$data <- ctx$select(vars)
-    names(values$data) <- c(".x", ".y", ".labels")
+    
+    # to allow selection of variable (facet)
+    # we also need the column variable from the crosstab
+    
+    col_var <- ctx$cselect() %>%
+      mutate(.ci = 1:nrow(.)-1)
+    values$data <- dplyr::left_join(values$data, col_var, by = ".ci" )
+    names(values$data) <- c(".x", ".y", ".ci", ".labels", ".group")
     return(values)
   }
   
@@ -53,6 +64,29 @@ server <- function(input, output, session) {
   
   #### DISPLAY UPLOADED DATA (as provided) ##################
   # this part removed as the data are displayed in the Tercen crosstab
+  
+  
+  ##### --- Render an input widget if > 1 group is mapped to `labels` --- ###
+  
+  group_select <- reactive({
+    gr <- getData() %>% dplyr::pull(.group) %>% unique
+    
+    # if (length(gr) > 1) {
+    #   selectInput(inputId = "plot_gr", choices = gr, label = "Select a variable", multiple = FALSE)
+    # } else {
+    #   div()
+    # }
+    
+    selectInput(inputId = "plot_gr", choices = gr, label = "Select a variable", multiple = FALSE)
+  })
+  
+  
+  output$select_group <- renderUI({
+    group_select()
+  })
+  
+  ##### --- END select var input logic --- ###
+  
   
   ################ Select top hits #########
   df_top  <- reactive({
@@ -139,13 +173,17 @@ server <- function(input, output, session) {
   ################ SELECT COLUMNS AND ANNOTATE CHANGES #########
   df_filtered <- reactive({
     df <- getData()
+    req(input$plot_gr)
     
     koos <-
-      df %>% select(
+      df %>% 
+      filter(.group == input$plot_gr) %>% 
+      select(
         `Fold change (log2)` = .x,
         `Significance` = .y,
         Name = .labels
       )
+    
     #Remove  names after semicolon for hits with multiple names, seperated by semicolons, e.g.: POLR2J3;POLR2J;POLR2J2
     koos <- koos %>% mutate(Name = gsub(';.*', '', Name))
     
