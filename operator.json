@@ -1,7 +1,7 @@
 {
-  "name": "Volcano Shiny Operator",
-  "description": "Volcano plot",
-  "tags": ["shiny"],
+  "name": "Volcano Plot",
+  "description": "A web application to create volcano plots.",
+  "tags": ["data visualisation"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/volcano_shiny_operator"]
 }
