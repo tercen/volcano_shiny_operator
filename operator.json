@@ -1,6 +1,6 @@
 {
   "name": "Volcano Plot",
-  "description": "A web application to create volcano plots.",
+  "description": "Creates volcano plots using a web application.",
   "tags": [
     "data visualisation",
     "plot"
