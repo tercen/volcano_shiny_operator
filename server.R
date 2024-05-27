@@ -268,8 +268,8 @@ server <- function(input, output, session) {
         size = input$pointSize,
         shape = 16
       ) +
-      aes(color = Change) +
-      scale_color_manual(values = c("Unchanged" = "#141A1F", "Increased" = "#36E076", "Decreased" = "#36A2E0")) +
+      aes(fill = Change) +
+      scale_fill_manual(values = c("Unchanged" = "#141A1F", "Increased" = "#36E076", "Decreased" = "#36A2E0")) +
       theme_bw()
     
     #Indicate cut-offs with dashed lines
@@ -427,8 +427,8 @@ server <- function(input, output, session) {
         size = input$pointSize,
         shape = 16
       ) +
-      aes(color = Change) +
-      scale_color_manual(values = c("Unchanged" = "#141A1F", "Increased" = "#36E076", "Decreased" = "#36A2E0")) +
+      aes(fill = Change) +
+      scale_fill_manual(values = c("Unchanged" = "#141A1F", "Increased" = "#36E076", "Decreased" = "#36A2E0")) +
       theme_bw()
     
     #Indicate cut-offs with dashed lines
