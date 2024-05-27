@@ -269,6 +269,7 @@ server <- function(input, output, session) {
         shape = 16
       ) +
       aes(color = Change) +
+      scale_color_manual(values = c("Unchanged" = "#141A1F", "Increased" = "#36E076", "Decreased" = "#36A2E0")) +
       theme_bw()
     
     #Indicate cut-offs with dashed lines
