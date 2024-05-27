@@ -268,7 +268,7 @@ server <- function(input, output, session) {
         size = input$pointSize,
         shape = 16
       ) +
-      aes(color = Change) +
+      aes(fill = Change) +
       scale_color_manual(values = c("Unchanged" = "#141A1F", "Increased" = "#36E076", "Decreased" = "#36A2E0")) +
       theme_bw()
     
