@@ -10,5 +10,53 @@
   ],
   "urls": [
     "https://github.com/tercen/volcano_shiny_operator"
-  ]
+  ],
+  "operatorSpec": {
+    "kind": "OperatorSpec",
+    "ontologyUri": "https://tercen.com/_ontology/tercen",
+    "ontologyVersion": "0.0.1",
+    "inputSpecs": [
+      {
+        "kind": "CrosstabSpec",
+        "metaFactors": [],
+        "axis": [
+          {
+            "kind": "AxisSpec",
+            "metaFactors": [
+              {
+                "kind": "MetaFactor",
+                "name": "Log2 Fold Change",
+                "type": "numeric",
+                "description": "Log2 fold change values for the x-axis.",
+                "ontologyMapping": "x-axis",
+                "crosstabMapping": "x",
+                "cardinality": "1",
+                "factors": []
+              },
+              {
+                "kind": "MetaFactor",
+                "name": "Negative Log10 P-Value",
+                "type": "numeric",
+                "description": "Negative log10 of the p-values adjusted for multiple testing for the y-axis.",
+                "ontologyMapping": "y-axis",
+                "crosstabMapping": "y",
+                "cardinality": "1",
+                "factors": []
+              },
+              {
+                "kind": "MetaFactor",
+                "name": "Labels",
+                "type": "string",
+                "description": "Gene names to be displayed on the plot.",
+                "ontologyMapping": "labels",
+                "crosstabMapping": "labels",
+                "cardinality": "1..n",
+                "factors": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
